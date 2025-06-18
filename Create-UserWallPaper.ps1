@@ -1,12 +1,12 @@
 # CONFIGURATION
-$OutputImage = "C:\Install\WallPaper\dynamic_background.png"
+$OutputImage = ".\dynamic_background.png"
 $bgColor = [System.Drawing.Color]::FromArgb(0x0A, 0x22, 0x32)
 $ImageWidth = 2560
 $ImageHeight = 1440
 $FontName = "Arial"
 $FontSizeHostname = 68
 $FontSizeUsername = 35
-$PngLogoPath = "C:\Install\WallPaper\Logo.png"
+$PngLogoPath = ".\Logo.png"
 $MaxLogoHeight = 150
 # CONFIGURATION
 
