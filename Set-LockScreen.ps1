@@ -1,9 +1,8 @@
 # Version info
 $time = (Get-Date).ToString("hh:mm tt")
-$version = "v25.6.18.9 - $time"
+$version = "v25.6.18.10 - $time"
 # CONFIGURATION
 $OutputImage = "C:\Windows\Web\Screen\lock_background.png"
-$bgColor = [System.Drawing.Color]::FromArgb(0x0A, 0x22, 0x32)
 $ImageWidth = 2560
 $ImageHeight = 1440
 $FontName = "Arial"
@@ -15,6 +14,7 @@ $MaxLogoHeight = 150
 
 # Load required .NET drawing classes
 Add-Type -AssemblyName System.Drawing
+$bgColor = [System.Drawing.Color]::FromArgb(0x0A, 0x22, 0x32)
 
 # Create blank bitmap and graphics object
 $bitmap = New-Object System.Drawing.Bitmap $ImageWidth, $ImageHeight
