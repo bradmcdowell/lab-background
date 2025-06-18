@@ -73,11 +73,23 @@ $userY = $hostY + $hostSize.Height + 10
 $graphics.DrawString($domainUser, $fontUser, $brush, $centerX - $userSize.Width / 2, $userY)
 
 # Version info
+# $fontSizeVersion = 24
+# $fontVersion = New-Object System.Drawing.Font($FontName, $fontSizeVersion, $fontStyleRegular)
+# $versionSize = $graphics.MeasureString($version, $fontVersion)
+# $versionY = $hostY + $hostSize.Height + 5
+# $graphics.DrawString($version, $fontVersion, $brush, $centerX - $versionSize.Width / 2, $versionY)
+
+# Version info in bottom-right corner
 $fontSizeVersion = 24
 $fontVersion = New-Object System.Drawing.Font($FontName, $fontSizeVersion, $fontStyleRegular)
 $versionSize = $graphics.MeasureString($version, $fontVersion)
-$versionY = $hostY + $hostSize.Height + 5
-$graphics.DrawString($version, $fontVersion, $brush, $centerX - $versionSize.Width / 2, $versionY)
+
+# Padding from bottom and right edge
+$padding = 80
+$versionX = $ImageWidth - $versionSize.Width - $padding
+$versionY = $ImageHeight - $versionSize.Height - $padding
+
+$graphics.DrawString($version, $fontVersion, $brush, $versionX, $versionY)
 
 
 # Save to file
