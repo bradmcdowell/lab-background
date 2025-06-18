@@ -1,3 +1,5 @@
+# Version info
+$version = "v25.6.18.1"
 # CONFIGURATION
 $OutputImage = "$env:USERPROFILE\Pictures\user_background.png"
 $bgColor = [System.Drawing.Color]::FromArgb(0x0A, 0x22, 0x32)
@@ -70,6 +72,14 @@ $userSize = $graphics.MeasureString($domainUser, $fontUser)
 $userY = $hostY + $hostSize.Height + 10
 $graphics.DrawString($domainUser, $fontUser, $brush, $centerX - $userSize.Width / 2, $userY)
 
+# Version info
+$fontSizeVersion = 24
+$fontVersion = New-Object System.Drawing.Font($FontName, $fontSizeVersion, $fontStyleRegular)
+$versionSize = $graphics.MeasureString($version, $fontVersion)
+$versionY = $hostY + $hostSize.Height + 5
+$graphics.DrawString($version, $fontVersion, $brush, $centerX - $versionSize.Width / 2, $versionY)
+
+
 # Save to file
 $bitmap.Save($OutputImage, [System.Drawing.Imaging.ImageFormat]::Png)
 
@@ -86,3 +96,6 @@ Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "Wallpaper" -Value $O
 
 # Tell Windows to refresh the wallpaper
 RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
+
+
+
