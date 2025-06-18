@@ -1,5 +1,5 @@
 # Version info
-$version = "v25.6.18.7"
+$version = "v25.6.18.8"
 # CONFIGURATION
 $OutputImage = "C:\Windows\Web\Screen\lock_background.png"
 $bgColor = [System.Drawing.Color]::FromArgb(0x0A, 0x22, 0x32)
@@ -48,9 +48,6 @@ $graphics.DrawImage($logo, $logoX, $logoY, $newWidth, $newHeight)
 # System information
 $hostname = "$env:COMPUTERNAME"
 
-
-#$username = "Username: $env:USERNAME"
-
 # Fix for ambiguous font constructor
 $fontStyleBold = [System.Drawing.FontStyle]::Bold
 $fontStyleRegular = [System.Drawing.FontStyle]::Regular
@@ -59,10 +56,16 @@ $fontUser = New-Object System.Drawing.Font($FontName, $FontSizeUsername, $fontSt
 $brush = [System.Drawing.Brushes]::White
 
 # Draw hostname centered on screen
-$centerX = $ImageWidth / 2
-$hostSize = $graphics.MeasureString($hostname, $fontHost)
-$hostY = ($ImageHeight / 2) - 40
-$graphics.DrawString($hostname, $fontHost, $brush, $centerX - $hostSize.Width / 2, $hostY)
+# $centerX = $ImageWidth / 2
+# $hostSize = $graphics.MeasureString($hostname, $fontHost)
+# $hostY = ($ImageHeight / 2) - 40
+# $graphics.DrawString($hostname, $fontHost, $brush, $centerX - $hostSize.Width / 2, $hostY)
+
+# Draw hostanme on top left
+# Draw hostname in top-left corner with margin
+$marginX = 200
+$marginY = 200
+$graphics.DrawString($hostname, $fontHost, $brush, $marginX, $marginY)
 
 # Version info in bottom-right corner
 $fontSizeVersion = 24

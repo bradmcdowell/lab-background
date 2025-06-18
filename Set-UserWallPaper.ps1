@@ -1,5 +1,5 @@
 # Version info
-$version = "v25.6.18.7"
+$version = "v25.6.18.8"
 # CONFIGURATION
 $OutputImage = "$env:USERPROFILE\Pictures\user_background.png"
 $bgColor = [System.Drawing.Color]::FromArgb(0x0A, 0x22, 0x32)
