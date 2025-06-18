@@ -1,5 +1,5 @@
 # Version info
-$version = "v25.6.18.2"
+$version = "v25.6.18.3"
 # CONFIGURATION
 $OutputImage = "$env:USERPROFILE\Pictures\user_background.png"
 $bgColor = [System.Drawing.Color]::FromArgb(0x0A, 0x22, 0x32)
@@ -78,7 +78,7 @@ $fontVersion = New-Object System.Drawing.Font($FontName, $fontSizeVersion, $font
 $versionSize = $graphics.MeasureString($version, $fontVersion)
 
 # Padding from bottom and right edge
-$padding = 80
+$padding = 150
 $versionX = $ImageWidth - $versionSize.Width - $padding
 $versionY = $ImageHeight - $versionSize.Height - $padding
 
