@@ -1,5 +1,5 @@
 # CONFIGURATION
-$OutputImage = "$env:USERPROFILE\Pictures\Wallpapers\user_background.png"
+$OutputImage = "$env:USERPROFILE\Pictures\user_background.png"
 $bgColor = [System.Drawing.Color]::FromArgb(0x0A, 0x22, 0x32)
 $ImageWidth = 2560
 $ImageHeight = 1440
