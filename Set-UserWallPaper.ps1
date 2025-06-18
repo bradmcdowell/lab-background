@@ -1,5 +1,6 @@
 # Version info
-$version = "v25.6.18.8"
+$time = (Get-Date).ToString("hh:mm tt")
+$version = "v25.6.18.8 - $time"
 # CONFIGURATION
 $OutputImage = "$env:USERPROFILE\Pictures\user_background.png"
 $bgColor = [System.Drawing.Color]::FromArgb(0x0A, 0x22, 0x32)
@@ -96,10 +97,32 @@ $logoOriginal.Dispose()
 Write-Output "✅ Background image created: $OutputImage"
 
 
-Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "Wallpaper" -Value $OutputImage
+# Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "Wallpaper" -Value $OutputImage
 
-# Tell Windows to refresh the wallpaper
-RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
+# # Tell Windows to refresh the wallpaper
+# RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
 
+
+
+# Path to your wallpaper image
+$wallpaperPath = $OutputImage
+
+# Add type to use SystemParametersInfo function
+Add-Type @"
+using System;
+using System.Runtime.InteropServices;
+public class Wallpaper {
+    [DllImport("user32.dll", SetLastError = true)]
+    public static extern bool SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
+}
+"@
+
+# Constants
+$SPI_SETDESKWALLPAPER = 20
+$SPIF_UPDATEINIFILE = 1
+$SPIF_SENDWININICHANGE = 2
+
+# Set the wallpaper
+[Wallpaper]::SystemParametersInfo($SPI_SETDESKWALLPAPER, 0, $wallpaperPath, $SPIF_UPDATEINIFILE -bor $SPIF_SENDWININICHANGE)
 
 

@@ -1,5 +1,6 @@
 # Version info
-$version = "v25.6.18.8"
+$time = (Get-Date).ToString("hh:mm tt")
+$version = "v25.6.18.8 - $time"
 # CONFIGURATION
 $OutputImage = "C:\Windows\Web\Screen\lock_background.png"
 $bgColor = [System.Drawing.Color]::FromArgb(0x0A, 0x22, 0x32)
