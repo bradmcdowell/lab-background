@@ -80,3 +80,9 @@ $logo.Dispose()
 $logoOriginal.Dispose()
 
 Write-Output "✅ Background image created: $OutputImage"
+
+
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "Wallpaper" -Value $OutputImage
+
+# Tell Windows to refresh the wallpaper
+RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
