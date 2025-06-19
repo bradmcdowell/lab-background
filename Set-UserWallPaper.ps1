@@ -1,6 +1,6 @@
 # Version info
 $time = (Get-Date).ToString("hh:mm tt")
-$version = "v25.6.19.1 - $time"
+$version = "v25.6.19.2 - $time"
 # CONFIGURATION
 $OutputImage = "$env:USERPROFILE\Pictures\user_background.png"
 $ImageWidth = 2560
@@ -47,7 +47,8 @@ $logoY = 120
 $graphics.DrawImage($logo, $logoX, $logoY, $newWidth, $newHeight)
 
 # System information
-$hostname = "$env:COMPUTERNAME"
+$domainname = (Get-CimInstance Win32_ComputerSystem).Domain
+$hostname = "$env:COMPUTERNAME" + "." + $domainname
 # Domain Username
 $domain = $env:USERDOMAIN
 $username = $env:USERNAME
@@ -102,31 +103,48 @@ Write-Output "✅ Background image created: $OutputImage"
 # # Tell Windows to refresh the wallpaper
 # RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
 
-# Set background to fit
-Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Value 6
+# # Set background to fit
+# Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Value 6
 
-# Set background colour to #0A2232
-Set-ItemProperty -Path "HKCU:\Control Panel\Colors" -Name "Background" -Value "10 34 50"
+# # Set background colour to #0A2232
+# Set-ItemProperty -Path "HKCU:\Control Panel\Colors" -Name "Background" -Value "10 34 50"
 
 # Path to your wallpaper image
-$wallpaperPath = $OutputImage
+# $wallpaperPath = $OutputImage
 
-# Add type to use SystemParametersInfo function
-Add-Type @"
-using System;
-using System.Runtime.InteropServices;
-public class Wallpaper {
-    [DllImport("user32.dll", SetLastError = true)]
-    public static extern bool SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
-}
-"@
+# # Add type to use SystemParametersInfo function
+# Add-Type @"
+# using System;
+# using System.Runtime.InteropServices;
+# public class Wallpaper {
+#     [DllImport("user32.dll", SetLastError = true)]
+#     public static extern bool SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
+# }
+# "@
 
-# Constants
-$SPI_SETDESKWALLPAPER = 20
-$SPIF_UPDATEINIFILE = 1
-$SPIF_SENDWININICHANGE = 2
+# # Constants
+# $SPI_SETDESKWALLPAPER = 20
+# $SPIF_UPDATEINIFILE = 1
+# $SPIF_SENDWININICHANGE = 2
 
-# Set the wallpaper
-[Wallpaper]::SystemParametersInfo($SPI_SETDESKWALLPAPER, 0, $wallpaperPath, $SPIF_UPDATEINIFILE -bor $SPIF_SENDWININICHANGE)
+# # Set the wallpaper
+# [Wallpaper]::SystemParametersInfo($SPI_SETDESKWALLPAPER, 0, $wallpaperPath, $SPIF_UPDATEINIFILE -bor $SPIF_SENDWININICHANGE)
 
+# RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
+
+
+# Set wallpaper image path
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name Wallpaper -Value $OutputImage
+
+# Set wallpaper style to Fit
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Value 6
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name TileWallpaper -Value 0
+
+# Prevent background color conflict
+Set-ItemProperty -Path "HKCU:\Control Panel\Colors" -Name "Background" -Value "10 34 50"
+
+# Disable slideshow or dynamic backgrounds
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Wallpapers" -Name "SlideshowEnabled" -Value 0 -Type DWord
+
+# Apply changes immediately
 RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters

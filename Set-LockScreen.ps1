@@ -1,6 +1,6 @@
 # Version info
 $time = (Get-Date).ToString("hh:mm tt")
-$version = "v25.6.19.1 - $time"
+$version = "v25.6.19.2 - $time"
 # CONFIGURATION
 $OutputImage = "C:\Windows\Web\Screen\lock_background.png"
 $ImageWidth = 2560
@@ -47,7 +47,8 @@ $logoY = 120
 $graphics.DrawImage($logo, $logoX, $logoY, $newWidth, $newHeight)
 
 # System information
-$hostname = "$env:COMPUTERNAME"
+$domainname = (Get-CimInstance Win32_ComputerSystem).Domain
+$hostname = "$env:COMPUTERNAME" + "." + $domainname
 
 # Fix for ambiguous font constructor
 $fontStyleBold = [System.Drawing.FontStyle]::Bold
