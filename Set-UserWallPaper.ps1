@@ -1,6 +1,6 @@
 # Version info
 $time = (Get-Date).ToString("hh:mm tt")
-$version = "v25.6.18.10 - $time"
+$version = "v25.6.19.1 - $time"
 # CONFIGURATION
 $OutputImage = "$env:USERPROFILE\Pictures\user_background.png"
 $ImageWidth = 2560
@@ -102,7 +102,11 @@ Write-Output "✅ Background image created: $OutputImage"
 # # Tell Windows to refresh the wallpaper
 # RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
 
+# Set background to fit
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Value 6
 
+# Set background colour to #0A2232
+Set-ItemProperty -Path "HKCU:\Control Panel\Colors" -Name "Background" -Value "10 34 50"
 
 # Path to your wallpaper image
 $wallpaperPath = $OutputImage
@@ -125,4 +129,4 @@ $SPIF_SENDWININICHANGE = 2
 # Set the wallpaper
 [Wallpaper]::SystemParametersInfo($SPI_SETDESKWALLPAPER, 0, $wallpaperPath, $SPIF_UPDATEINIFILE -bor $SPIF_SENDWININICHANGE)
 
-
+RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
