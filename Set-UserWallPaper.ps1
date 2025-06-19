@@ -1,6 +1,6 @@
 # Version info
 $time = (Get-Date).ToString("hh:mm tt")
-$version = "v25.6.19.3 - $time"
+$version = "v25.6.19.4 - $time"
 # CONFIGURATION
 $OutputImage = "$env:USERPROFILE\Pictures\user_background.png"
 $ImageWidth = 2560
@@ -47,8 +47,7 @@ $logoY = 120
 $graphics.DrawImage($logo, $logoX, $logoY, $newWidth, $newHeight)
 
 # System information
-$domainname = (Get-CimInstance Win32_ComputerSystem).Domain
-$hostname = "$env:COMPUTERNAME" + "." + $domainname
+$hostname = $env:COMPUTERNAME
 # Domain Username
 $domain = $env:USERDOMAIN
 $username = $env:USERNAME
