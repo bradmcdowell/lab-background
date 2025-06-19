@@ -1,6 +1,6 @@
 # Version info
 $time = (Get-Date).ToString("hh:mm tt")
-$version = "v25.6.19.2 - $time"
+$version = "v25.6.19.3 - $time"
 # CONFIGURATION
 $OutputImage = "C:\Windows\Web\Screen\lock_background.png"
 $ImageWidth = 2560
