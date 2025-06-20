@@ -1,7 +1,9 @@
 # Version info
+$ScriptVersion = "v25.6.20.1"
 $time = (Get-Date).ToString("hh:mm tt")
-$version = "v25.6.19.4 - $time"
+
 # CONFIGURATION
+$filePath = "C:\lab-background\info.txt"
 $OutputImage = "$env:USERPROFILE\Pictures\user_background.png"
 $ImageWidth = 2560
 $ImageHeight = 1440
@@ -11,6 +13,15 @@ $FontSizeUsername = 35
 $PngLogoPath = "C:\lab-background\Logo.png"
 $MaxLogoHeight = 150
 # CONFIGURATION
+
+# Check if the file exists
+if (Test-Path $filePath) {
+    # Read the string from the file
+    $version = Get-Content $filePath -Raw
+} else {
+    # Use hardcoded text
+    $version = "$ScriptVersion - $time"
+}
 
 # Load required .NET drawing classes
 Add-Type -AssemblyName System.Drawing
