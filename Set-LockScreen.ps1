@@ -1,7 +1,9 @@
 # Version info
+$ScriptVersion = "v25.6.20.2"
 $time = (Get-Date).ToString("hh:mm tt")
-$version = "v25.6.20.1 - $time"
+
 # CONFIGURATION
+$InfoPath = "C:\lab-background\info.txt"
 $OutputImage = "C:\Windows\Web\Screen\lock_background.png"
 $ImageWidth = 2560
 $ImageHeight = 1440
@@ -11,6 +13,15 @@ $FontSizeUsername = 35
 $PngLogoPath = "C:\lab-background\Logo.png"
 $MaxLogoHeight = 150
 # CONFIGURATION
+
+# Check if the info file exists
+if (Test-Path $InfoPath) {
+    # Read the string from the file
+    $version = Get-Content $InfoPath -Raw
+} else {
+    # Use hardcoded text
+    $version = "$ScriptVersion - $time"
+}
 
 # Load required .NET drawing classes
 Add-Type -AssemblyName System.Drawing

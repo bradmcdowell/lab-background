@@ -1,9 +1,9 @@
 # Version info
-$ScriptVersion = "v25.6.20.1"
+$ScriptVersion = "v25.6.20.2"
 $time = (Get-Date).ToString("hh:mm tt")
 
 # CONFIGURATION
-$filePath = "C:\lab-background\info.txt"
+$InfoPath = "C:\lab-background\info.txt"
 $OutputImage = "$env:USERPROFILE\Pictures\user_background.png"
 $ImageWidth = 2560
 $ImageHeight = 1440
@@ -14,10 +14,10 @@ $PngLogoPath = "C:\lab-background\Logo.png"
 $MaxLogoHeight = 150
 # CONFIGURATION
 
-# Check if the file exists
-if (Test-Path $filePath) {
+# Check if the info file exists
+if (Test-Path $InfoPath) {
     # Read the string from the file
-    $version = Get-Content $filePath -Raw
+    $version = Get-Content $InfoPath -Raw
 } else {
     # Use hardcoded text
     $version = "$ScriptVersion - $time"
