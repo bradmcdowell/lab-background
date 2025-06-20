@@ -119,7 +119,7 @@ Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Value
 # Set background colour to #0A2232
 Set-ItemProperty -Path "HKCU:\Control Panel\Colors" -Name "Background" -Value "10 34 50"
 
-Path to your wallpaper image
+#Path to your wallpaper image
 $wallpaperPath = $OutputImage
 
 # Add type to use SystemParametersInfo function
