@@ -66,6 +66,11 @@ C:\lab-background\Set-UserWallPaper.ps1
 C:\lab-background\info.txt
 ```
 
+It also configures the following:
+
+- 🧑 **User Configuration**: Runs `Set-UserWallPaper.ps1` at **logon**
+- 🖥️ **Computer Configuration**: Runs `Set-LockScreen.ps1` at **startup**
+
 ---
 
 ✅ Once applied, users will see the updated background with your company branding and system info.
