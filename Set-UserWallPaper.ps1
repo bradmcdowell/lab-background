@@ -1,5 +1,5 @@
 # Version info
-$ScriptVersion = "v25.6.20.2"
+$ScriptVersion = "v25.7.02.1"
 $time = (Get-Date).ToString("hh:mm tt")
 
 # CONFIGURATION
@@ -25,13 +25,13 @@ if (Test-Path $InfoPath) {
 
 # Load required .NET drawing classes
 Add-Type -AssemblyName System.Drawing
-$bgColor = [System.Drawing.Color]::FromArgb(0x0A, 0x22, 0x32)
+$bgColor = [System.Drawing.Color]::FromArgb(2, 107, 149)
 
 # Create blank bitmap and graphics object
 $bitmap = New-Object System.Drawing.Bitmap $ImageWidth, $ImageHeight
 $graphics = [System.Drawing.Graphics]::FromImage($bitmap)
 #$graphics.Clear([System.Drawing.Color]::$BackgroundColor)
-$bgColor = [System.Drawing.Color]::FromArgb(0x0A, 0x22, 0x32)
+$bgColor = [System.Drawing.Color]::FromArgb(2, 107, 149)
 $graphics.Clear($bgColor)
 
 
@@ -117,7 +117,7 @@ Write-Output "✅ Background image created: $OutputImage"
 Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Value 6
 
 # Set background colour to #0A2232
-Set-ItemProperty -Path "HKCU:\Control Panel\Colors" -Name "Background" -Value "10 34 50"
+Set-ItemProperty -Path "HKCU:\Control Panel\Colors" -Name "Background" -Value "2 107 149"
 
 #Path to your wallpaper image
 $wallpaperPath = $OutputImage
