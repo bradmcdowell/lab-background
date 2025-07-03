@@ -1,5 +1,5 @@
 # Version info
-$ScriptVersion = "v25.7.02.1"
+$ScriptVersion = "v25.7.03.1"
 $time = (Get-Date).ToString("hh:mm tt")
 
 # CONFIGURATION
@@ -107,3 +107,31 @@ $lockScreenImagePath = $OutputImage
 New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization" -Force | Out-Null
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization" -Name "LockScreenImage" -Value $lockScreenImagePath
 
+# This part of the scipt is to detect Windows 11 computers and apply the background
+# Get OS version
+$osInfo = Get-CimInstance Win32_OperatingSystem
+Write-Host "Detected OS: $($osInfo.Caption) ($($osInfo.Version), Build $($osInfo.BuildNumber))"
+
+# Reg Path
+$regPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
+
+# Check if OS build is greater than 22000
+$isWindows11 = [int]$osInfo.BuildNumber -ge 22000
+
+if ($isWindows11) {
+    Write-Host "✔ This is Windows 11."
+    # Create the registry key if it doesn't exist
+    If (-not (Test-Path $regPath)) {
+		
+        New-Item -Path $regPath -Force | Out-Null
+    }
+
+    # Set the required values
+    Set-ItemProperty -Path $regPath -Name "LockScreenImagePath"   -Value $lockScreenImagePath -Type String
+    Set-ItemProperty -Path $regPath -Name "LockScreenImageUrl"    -Value $lockScreenImagePath -Type String
+    Set-ItemProperty -Path $regPath -Name "LockScreenImageStatus" -Value 1                    -Type DWord
+
+    Write-Host "✔ Lock screen image set to $lockScreenImagePath on Windows 11."
+} else {
+    Write-Host "❌ This is not Windows 11 ending the script."
+}
