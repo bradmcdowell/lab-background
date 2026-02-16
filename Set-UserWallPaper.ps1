@@ -12,6 +12,7 @@ $FontSizeHostname = 68
 $FontSizeUsername = 35
 $PngLogoPath = "C:\lab-background\Logo.png"
 $MaxLogoHeight = 150
+$rgbString = "250 88 45" # RGB values for background color (2, 107, 149)
 # CONFIGURATION
 
 # Check if the info file exists
@@ -25,13 +26,13 @@ if (Test-Path $InfoPath) {
 
 # Load required .NET drawing classes
 Add-Type -AssemblyName System.Drawing
-$bgColor = [System.Drawing.Color]::FromArgb(2, 107, 149)
+$bgColor = [System.Drawing.Color]::FromArgb($rgbString)
 
 # Create blank bitmap and graphics object
 $bitmap = New-Object System.Drawing.Bitmap $ImageWidth, $ImageHeight
 $graphics = [System.Drawing.Graphics]::FromImage($bitmap)
 #$graphics.Clear([System.Drawing.Color]::$BackgroundColor)
-$bgColor = [System.Drawing.Color]::FromArgb(2, 107, 149)
+$bgColor = [System.Drawing.Color]::FromArgb($rgbString)
 $graphics.Clear($bgColor)
 
 
@@ -117,7 +118,7 @@ Write-Output "✅ Background image created: $OutputImage"
 Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Value 6
 
 # Set background colour to #0A2232
-Set-ItemProperty -Path "HKCU:\Control Panel\Colors" -Name "Background" -Value "2 107 149"
+Set-ItemProperty -Path "HKCU:\Control Panel\Colors" -Name "Background" -Value $rgbString
 
 #Path to your wallpaper image
 $wallpaperPath = $OutputImage
