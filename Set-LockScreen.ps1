@@ -12,7 +12,7 @@ $FontSizeHostname = 68
 $FontSizeUsername = 35
 $PngLogoPath = "C:\lab-background\Logo.png"
 $MaxLogoHeight = 150
-$rgbString = "250, 88, 45" # RGB values for background color #FA582D
+$rgbString = "0, 0, 0" # RGB values for background color #FA582D
 $r, $g, $b = $rgbString.Split(',').Trim() -as [int[]]
 # CONFIGURATION
 
