@@ -12,7 +12,7 @@ $FontSizeHostname = 68
 $FontSizeUsername = 35
 $PngLogoPath = "C:\lab-background\Logo.png"
 $MaxLogoHeight = 150
-$rgbString = "250, 88, 45" # RGB values for background color (2, 107, 149)
+$rgbString = "250, 88, 45" # RGB values for background color #FA582D
 $r, $g, $b = $rgbString.Split(',').Trim() -as [int[]]
 # CONFIGURATION
 
@@ -118,7 +118,7 @@ Write-Output "✅ Background image created: $OutputImage"
 # Set background to fit
 Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Value 6
 
-# Set background colour to #0A2232
+# Set background colour
 Set-ItemProperty -Path "HKCU:\Control Panel\Colors" -Name "Background" -Value "$r $g $b"
 
 #Path to your wallpaper image
