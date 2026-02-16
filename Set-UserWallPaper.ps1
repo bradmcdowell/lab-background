@@ -12,7 +12,7 @@ $FontSizeHostname = 68
 $FontSizeUsername = 35
 $PngLogoPath = "C:\lab-background\Logo.png"
 $MaxLogoHeight = 150
-$rgbString = "250 88 45" # RGB values for background color (2, 107, 149)
+$rgbString = "250, 88, 45" # RGB values for background color (2, 107, 149)
 # CONFIGURATION
 
 # Check if the info file exists
