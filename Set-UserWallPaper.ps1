@@ -13,6 +13,7 @@ $FontSizeUsername = 35
 $PngLogoPath = "C:\lab-background\Logo.png"
 $MaxLogoHeight = 150
 $rgbString = "250, 88, 45" # RGB values for background color (2, 107, 149)
+$r, $g, $b = $rgbString.Split(',').Trim() -as [int[]]
 # CONFIGURATION
 
 # Check if the info file exists
@@ -26,13 +27,13 @@ if (Test-Path $InfoPath) {
 
 # Load required .NET drawing classes
 Add-Type -AssemblyName System.Drawing
-$bgColor = [System.Drawing.Color]::FromArgb($rgbString)
+$bgColor = [System.Drawing.Color]::FromArgb($r, $g, $b)
 
 # Create blank bitmap and graphics object
 $bitmap = New-Object System.Drawing.Bitmap $ImageWidth, $ImageHeight
 $graphics = [System.Drawing.Graphics]::FromImage($bitmap)
 #$graphics.Clear([System.Drawing.Color]::$BackgroundColor)
-$bgColor = [System.Drawing.Color]::FromArgb($rgbString)
+$bgColor = [System.Drawing.Color]::FromArgb($r, $g, $b)
 $graphics.Clear($bgColor)
 
 
