@@ -119,7 +119,7 @@ Write-Output "✅ Background image created: $OutputImage"
 Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Value 6
 
 # Set background colour to #0A2232
-Set-ItemProperty -Path "HKCU:\Control Panel\Colors" -Name "Background" -Value $rgbString
+Set-ItemProperty -Path "HKCU:\Control Panel\Colors" -Name "Background" -Value "$r $g $b"
 
 #Path to your wallpaper image
 $wallpaperPath = $OutputImage
