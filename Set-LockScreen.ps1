@@ -1,5 +1,5 @@
 # Version info
-$ScriptVersion = "v25.7.03.2"
+$ScriptVersion = "v26.02.25.1"
 $time = (Get-Date).ToString("hh:mm tt")
 
 # CONFIGURATION
@@ -12,7 +12,7 @@ $FontSizeHostname = 68
 $FontSizeUsername = 35
 $PngLogoPath = "C:\lab-background\Logo.png"
 $MaxLogoHeight = 150
-$rgbString = "0, 0, 0" # RGB values for background color #FA582D
+$rgbString = "178, 56, 8" # RGB values for background color #B23808
 $r, $g, $b = $rgbString.Split(',').Trim() -as [int[]]
 # CONFIGURATION
 
